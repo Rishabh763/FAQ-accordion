@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import './index.css'
+import { FaCirclePlus } from "react-icons/fa6";
+import { FaCircleMinus } from "react-icons/fa6";
 
 function App() {
   const data = [
@@ -41,32 +43,30 @@ function App() {
       <header className='h-48 full-width'>
         
       </header>
-      <div className='relative -top-32 flex flex-col items-center bg-black mx-auto p-6 md:p-12 rounded-lg h-fit place-content-start'>
-        <h1>FAQs</h1>
-        <div className='max-w-[400px]'>
+      <div className='relative max-w-[550px] -top-32 flex flex-col  gap-4 bg-white mx-auto p-6 sm:p-12 rounded-lg h-fit'>
+        <h1 className='text-5xl font-bold mb-4'>
+            <img src='/assets/icon-star.svg' alt="star" className='inline-block mr-4'/>
+            FAQs
+          </h1>
           {
           data.map((item) => 
            (
-             <div className="flex flex-col mb-6" key={item.id} >
-               <div className='flex items-center justify-between gap-4 mb-3 cursor-pointer' onClick={() => handleSingleAccordion(item.id)}>
-                 <div className={`${selected === item.id ? "text-purple-600" : "text-white"} hover:text-purple-700 transition-colors`}>
+             <div className="w-full flex flex-col mb-2  font-semibold" key={item.id} >
+               <div className='text-pretty flex items-center justify-between gap-2 md:gap-6 cursor-pointer' onClick={() => handleSingleAccordion(item.id)}>
+                 <div className={`hover:text-purple-800 transition-colors`}>
                   {item.question}
                  </div>
-                 <span className='text-3xl'>
+                 <span className='text-2xl '>
                   {
                   selected === item.id ? 
-                  <div>
-                    -
-                  </div> : 
-                  <div>
-                    +
-                  </div>
+                  <FaCircleMinus className='text-black'/> :
+                  <FaCirclePlus className=' text-purple-800'  />
                  }
                  </span>
                </div>
                  {
                   selected === item.id ?
-                  <div className='opacity-50'>
+                  <div className='text-grayish-purple font-normal mr-6'>
                     {item.answer}
                   </div> : null
                  }
@@ -74,7 +74,6 @@ function App() {
              
           ))
           }
-        </div>
       </div>
     </div>
   )
