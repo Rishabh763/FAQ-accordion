@@ -31,7 +31,7 @@ function App() {
   ]
 
 
-  const [selected,setSelected] = useState(null);
+  const [selected,setSelected] = useState(1);
 
   function handleSingleAccordion(getCurrent){
     setSelected(getCurrent === selected ? null : getCurrent)
@@ -51,7 +51,7 @@ function App() {
           {
           data.map((item) => 
            (
-             <div className="w-full flex flex-col mb-2  font-semibold" key={item.id} >
+             <div className="w-full  flex flex-col mb-2  font-semibold" key={item.id} >
                <div className='text-pretty flex items-center justify-between gap-2 md:gap-6 cursor-pointer' onClick={() => handleSingleAccordion(item.id)}>
                  <div className={`hover:text-purple-800 transition-colors`}>
                   {item.question}
@@ -64,12 +64,15 @@ function App() {
                  }
                  </span>
                </div>
-                 {
-                  selected === item.id ?
-                  <div className='text-grayish-purple font-normal mr-6'>
-                    {item.answer}
-                  </div> : null
-                 }
+                 <div   className={`transition-all ease-in-out duration-700 overflow-hidden ${
+                   selected === item.id ? 'max-h-64' : 'max-h-0'
+                 }`}
+                 >
+                    <div className='text-grayish-purple font-normal mr-6'>
+                      {item.answer}
+                    </div> 
+                   
+                 </div>
              </div>
              
           ))
@@ -80,3 +83,4 @@ function App() {
 }
 
 export default App
+
